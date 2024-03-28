@@ -12,7 +12,10 @@ import ChartOne from './ChartOne.tsx';
 const Dashboard = () => {
   return (
     <>
+    <div  className="p-6 bg-gray-100 rounded-lg shadow-md" >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
+      {/* className="p-6 bg-gray-100 rounded-lg shadow-md" */}
+     {/* className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5" */}
         {/* <CardOne /> */}
         <CardTwo />
         <CardThree />
@@ -28,6 +31,7 @@ const Dashboard = () => {
           {/* <TableOne /> */}
         {/* </div> */}
         {/* <ChatCard /> */}
+      </div>
       </div>
     </>
   );
