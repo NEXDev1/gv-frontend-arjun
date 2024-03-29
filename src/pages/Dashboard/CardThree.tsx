@@ -1,4 +1,4 @@
-import { faCoffee,faSackDollar,faPercent,} from '@fortawesome/free-solid-svg-icons';
+import { faSackDollar} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const CardThree = () => {
   return (
