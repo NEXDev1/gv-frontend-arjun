@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeLayoutPage from "../pages/HomeLayoutPage";
+import { ModalProvider } from '../components/ModalContext';
 // import EditCurrency from "../components/settings/EditCurrency";
 // import EditChannel from "../components/channels/EditChannel";
 // import Dashboard from "../pages/element/Dashboard";
@@ -10,9 +11,8 @@ import HomeLayoutPage from "../pages/HomeLayoutPage";
 // import Reports from "../pages/element/Reports";
 // import Settings from "../pages/element/Settings";
 // import Upload from "../components/upload/Upload";
-
 // Lazy-loaded components
-const Dashboard = lazy(() => import("../pages/element/Dashboard"));
+const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const Payment = lazy(() => import("../pages/element/Payment"));
 const Channel = lazy(() => import("../components/channels/listChannels"));
 const AddChannel = lazy(() => import("../components/channels/AddChannel"));
@@ -37,7 +37,9 @@ const AdminRoute: React.FC = () => {
         <Route index element={<Suspense fallback={<div>Loading...</div>}><Dashboard /></Suspense>} />
         <Route path="upload" element={<Suspense fallback={<div>Loading...</div>}><Upload /></Suspense>} />
        
-        <Route path="channels" element={<Suspense fallback={<div>Loading...</div>}><Channel /></Suspense>} />
+        <Route path="channels" element={<Suspense fallback={<div>Loading...</div>}><ModalProvider>
+        <Channel />
+       </ModalProvider></Suspense>} /> 
         <Route path="channels/add-channel" element={<Suspense fallback={<div>Loading...</div>}><AddChannel /></Suspense>} />
         <Route path="channels/edit-channel/:id" element={<Suspense fallback={<div>Loading...</div>}><EditChannel /></Suspense>} />
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component";
 import { Link, useNavigate } from "react-router-dom";
 import axiosRequest from "../../api/api";
+import { useModal } from "../ModalContext";
 
 interface Channel {
   channelName: any;
@@ -16,6 +17,7 @@ const ChannelList = () => {
   const [channels, setChannels] = useState<Channel[]>([]);
 
   const navigate = useNavigate();
+  const { openModal } = useModal();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,9 +39,10 @@ const ChannelList = () => {
   console.log(channels);
 
   const columns: TableColumn<Channel>[] = [
-    { name: "Index", selector: (_row: any, index: any) => index + 1 },
+    { name: "Index",width:"80px", selector: (_row: any, index: any) => index + 1 },
     {
       name: "Logo",
+      width:"150px",
       cell: (row: Channel) => (
         <img
           src={row.logo}
@@ -53,12 +56,13 @@ const ChannelList = () => {
           }}
         />
       ),
-    },
-    { name: "Name", selector: (row: { name: any }) => row.name },
-    { name: "E-mail", selector: (row: { email: any }) => row.email },
+   },
+    { name: "Name",width:"200px", selector: (row: { name: any }) => row.name },
+    { name: "E-mail",width:"250px", selector: (row: { email: any }) => row.email },
     {
       name: "Commission %",
       selector: (row: { commission: any }) => row.commission,
+      width: "200px",
     },
     {
       name: "Action",
@@ -67,14 +71,20 @@ const ChannelList = () => {
           <button
             onClick={() => handleEdit(row)}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          >
+            >
             Edit
           </button>
           <button
             onClick={() => handleDelete(row)}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          >
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+            >
             Delete
+          </button>
+          <button
+            onClick={() => generateInvoice(row)}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+            >
+            Invoice{" "}
           </button>
         </div>
       ),
@@ -98,9 +108,7 @@ const ChannelList = () => {
   };
 
   const handleDelete = async (row: Channel) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this Channel ?"
-    );
+    const confirmed = window.confirm("Are you sure you want to delete this Channel ?")
     if (!confirmed) return;
     try {
       const config = {
@@ -120,6 +128,23 @@ const ChannelList = () => {
     }
   };
 
+  const generateInvoice = async (row: Channel) => {
+    // navigate(`/invoice`);
+    // navigate(`/invoice/${row._id}`);
+    openModal();
+    try {
+      const config = {
+        method: "get",
+        url: `admin/invoice/${row._id}`,
+        // data: row._id,
+      };
+      const response: any = await axiosRequest(config);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching channels:", error);
+    }
+  };
+
   return (
     <>
       <div className="p-6 bg-gray-100 rounded-lg shadow-md">
@@ -128,10 +153,13 @@ const ChannelList = () => {
             Channels List
           </h1>
 
+
           <Link
             to="/channels/add-channel"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          >
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+            >
+             {/* className="inline-flex items-center justify-center rounded-md bg-primary py-4 px-10 mx-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-5"
+            > */}
             Add Channel
           </Link>
         </div>
@@ -144,6 +172,7 @@ const ChannelList = () => {
             responsive
           />
         </div>
+       
       </div>
     </>
   );
