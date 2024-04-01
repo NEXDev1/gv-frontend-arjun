@@ -1,21 +1,21 @@
-import { ApexOptions } from 'apexcharts';
-import React, { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
+import { ApexOptions } from "apexcharts";
+import React, { useEffect, useState } from "react";
+import ReactApexChart from "react-apexcharts";
 
 const options: ApexOptions = {
   legend: {
     show: false,
-    position: 'top',
-    horizontalAlign: 'left',
+    position: "top",
+    horizontalAlign: "left",
   },
-  colors: ['#3C50E0', '#80CAEE'],
+  colors: ["#3C50E0", "#80CAEE"],
   chart: {
-    fontFamily: 'Satoshi, sans-serif',
+    fontFamily: "Satoshi, sans-serif",
     height: 335,
-    type: 'area',
+    type: "area",
     dropShadow: {
       enabled: true,
-      color: '#623CEA14',
+      color: "#623CEA14",
       top: 10,
       blur: 4,
       left: 0,
@@ -46,7 +46,7 @@ const options: ApexOptions = {
   ],
   stroke: {
     width: [2, 2],
-    curve: 'straight',
+    curve: "straight",
   },
   // labels: {
   //   show: false,
@@ -69,8 +69,8 @@ const options: ApexOptions = {
   },
   markers: {
     size: 4,
-    colors: '#fff',
-    strokeColors: ['#3056D3', '#80CAEE'],
+    colors: "#fff",
+    strokeColors: ["#3056D3", "#80CAEE"],
     strokeWidth: 3,
     strokeOpacity: 0.9,
     strokeDashArray: 0,
@@ -82,20 +82,20 @@ const options: ApexOptions = {
     },
   },
   xaxis: {
-    type: 'category',
+    type: "category",
     categories: [
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
     ],
     axisBorder: {
       show: false,
@@ -107,7 +107,7 @@ const options: ApexOptions = {
   yaxis: {
     title: {
       style: {
-        fontSize: '0px',
+        fontSize: "0px",
       },
     },
     min: 0,
@@ -124,18 +124,23 @@ interface ChartOneState {
 
 const ChartOne: React.FC = () => {
   const [state, setState] = useState<ChartOneState>({
-    series: [
-      {
-        name: 'Product One',
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
-      },
-
-      {
-        name: 'Product Two',
-        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
-      },
-    ],
+    series: [],
   });
+
+  useEffect(() => {
+    setState({
+      series: [
+        {
+          name: "Product One",
+          data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+        },
+        {
+          name: "Product Two",
+          data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+        },
+      ],
+    });
+  }, []); 
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7 xl:col-span-8">
@@ -147,7 +152,9 @@ const ChartOne: React.FC = () => {
             </span>
             <div className="w-full">
               <p className="font-semibold text-blue-600 ">Total Revenue</p>
-              <p className="text-sm font-medium text-slate-300">12.04.2022 - 12.05.2022</p>
+              <p className="text-sm font-medium text-slate-300">
+                12.04.2022 - 12.05.2022
+              </p>
             </div>
           </div>
           <div className="flex min-w-47.5">
@@ -156,7 +163,9 @@ const ChartOne: React.FC = () => {
             </span>
             <div className="w-full">
               <p className="font-semibold text-blue-400 ">Total Sales</p>
-              <p className="text-sm font-medium text-slate-300">12.04.2022 - 12.05.2022</p>
+              <p className="text-sm font-medium text-slate-300">
+                12.04.2022 - 12.05.2022
+              </p>
             </div>
           </div>
         </div>
