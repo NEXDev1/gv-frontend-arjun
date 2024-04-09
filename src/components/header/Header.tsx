@@ -6,7 +6,7 @@ import { toggleSideBar } from "../../redux/features/reducer/sidebarSlice";
 import { useNavigate } from "react-router-dom";
 // import { deleteUserTokenAndUserData } from "../../redux/features/reducer/userAuthSlice";
 
-import logo from "../../../public/WhatsApp Image 2024-01-24 at 12.10.24 PM.jpeg";
+import logo from "../../images/Logo.png";
 
 const Header: React.FC = () => {
   const [menuvisible, setMenuvisible] = useState(false);
@@ -87,7 +87,8 @@ const Header: React.FC = () => {
               <span className="sr-only">Toggle sidebar</span>
             </button>
            
-            <img src={logo} alt="" className="w-auto h-10" />
+            <img src={logo} alt="" style={{ width: '100px', height: 'auto',marginLeft:'50px' }} />
+
             {/* <form action="#" method="GET" className="hidden md:block md:pl-2">
               <label htmlFor="topbar-search" className="sr-only">
                 Search

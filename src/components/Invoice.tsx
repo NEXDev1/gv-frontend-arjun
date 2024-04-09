@@ -34,7 +34,7 @@ const Invoice = () => {
     >
     
       <center>
-        <img src={Logo} alt="Logo" style={{ width: "100px", height: "auto" }} />
+        <img src={Logo} alt="Logo" style={{ width: "200px", height: "auto" }} />
       </center>
       <center>
         <h1 className="text-3xl font-bold text-black ">
