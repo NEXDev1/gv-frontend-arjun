@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminRoute from "./routes/AdminRoute";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <>
       <Router>

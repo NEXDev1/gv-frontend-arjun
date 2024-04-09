@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const baseUrl: string = "/api/";
+const baseUrl: string = "http://localhost:8000/api/";
 
 const axiosRequest = async <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> => {
   try {
